@@ -24,6 +24,36 @@ with an explicit browser, e.g.:
 npx slidev export slides.md --format pdf --executable-path /path/to/chrome
 ```
 
+## Deploying to Vercel
+
+The included `vercel.json` is what makes this work — Slidev builds a
+client-side-routed single-page app (each slide is a route like `/2`, `/3`, …),
+and Vercel needs to be told to serve `index.html` for every path, plus build
+with an absolute base path:
+
+```json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+Two things that cause a 404 on Vercel specifically if either is missing:
+
+1. **Absolute base path.** `npm run build` runs `slidev build slides.md --base /`.
+   A relative base (`--base ./`) makes every asset URL relative to whatever
+   slide route the browser is on, so anything past the very first slide fails
+   to load its JS/CSS.
+2. **SPA fallback via `rewrites`.** Slidev's own build emits a Netlify-style
+   `_redirects` file for this, but Vercel doesn't read that file — it needs
+   the `rewrites` rule above in `vercel.json`, which this project already has.
+
+To deploy: import this folder as a Vercel project (or drag-and-drop deploy),
+and in Project Settings confirm Build Command `npm run build` and Output
+Directory `dist` (the `vercel.json` sets both automatically, but double-check
+if you changed the framework preset). No further configuration is needed.
+
 ## deck2video (narrated MP4)
 
 Every slide's speaker notes are written as an HTML-comment narration script

@@ -5,7 +5,7 @@
   "description": "Academic Reading and Writing — Rhetorical Modes lecture deck (Slidev, deck2video-ready).",
   "scripts": {
     "dev": "slidev slides.md --open",
-    "build": "slidev build slides.md --base ./",
+    "build": "slidev build slides.md --base /",
     "export": "slidev export slides.md --format pdf",
     "export:png": "slidev export slides.md --format png"
   },

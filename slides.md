@@ -1,7 +1,6 @@
 ---
 theme: default
 title: Rhetorical Modes — Academic Reading and Writing
-favicon: Maxfav.png
 info: |
   ## Rhetorical Modes: A Writer's Toolkit for Purpose and Audience
   Academic Reading and Writing · Prof. D. Gerber · Fall 2026
