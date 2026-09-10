@@ -253,3 +253,14 @@ html, body { background: var(--paper); }
 /* utility */
 .grow { flex: 1; }
 .small-caps { font-variant: small-caps; }
+
+/* ------------------------------------------------------------
+   Slidev's built-in "Goto..." quick-jump dialog (triggered by
+   pressing "g") is a presenter-only convenience that has shown up
+   stuck open/visible in the top-right corner on static deployments
+   (Vercel) instead of staying off-screen. This deck is meant to be
+   viewed, not driven from the keyboard, so it's disabled outright
+   rather than fought with. Does not affect slide content, printing,
+   or PDF/PNG export (Slidev doesn't mount it in print mode anyway).
+   ------------------------------------------------------------ */
+#slidev-goto-dialog { display: none !important; }
